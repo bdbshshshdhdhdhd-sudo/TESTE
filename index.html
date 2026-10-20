@@ -1,12 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Portfólio</title>
+
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description"
+    content="Portfólio de JotaDev: projetos, aprendizado e desenvolvimento web.">
+
+  <title>JotaDev | Portfólio</title>
 
   <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #f0f6fc;
+      --muted: #9da7b3;
+      --accent: #58a6ff;
+      --green: #238636;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -15,194 +29,343 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0b0b12;
-      color: #f5f5ff;
-      line-height: 1.6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1050px, 90%);
+      margin: 0 auto;
     }
 
     header {
-      padding: 22px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(13, 17, 23, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar {
+      min-height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #252536;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 23px;
+      font-weight: 750;
+      letter-spacing: -1px;
+      text-decoration: none;
     }
 
     .logo span {
-      color: #9b7bff;
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
     }
 
     nav a {
-      color: #bbb9d0;
+      color: var(--muted);
       text-decoration: none;
-      margin-left: 16px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover,
+    .text-link:hover {
+      color: var(--accent);
     }
 
     .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: radial-gradient(ellipse at top, #29204c, #0b0b12 70%);
+      padding: 110px 0 95px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .tag {
-      color: #c6b5ff;
-      border: 1px solid #594582;
-      border-radius: 30px;
-      padding: 7px 14px;
-      display: inline-block;
-      margin-bottom: 25px;
-    }
-
-    h1 {
-      font-size: clamp(38px, 7vw, 68px);
-      line-height: 1.15;
+    .eyebrow {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-bottom: 20px;
     }
 
+    h1 {
+      max-width: 760px;
+      font-size: clamp(38px, 7vw, 66px);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
     h1 span {
-      color: #a68aff;
+      color: var(--accent);
     }
 
-    .hero p {
-      color: #aaa9c0;
-      max-width: 550px;
-      margin: auto;
+    .hero-description {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 17px;
     }
 
-    .btn {
-      display: inline-block;
-      margin: 25px 6px 0;
-      padding: 12px 20px;
-      border-radius: 9px;
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
-      background: #9b7bff;
-      color: #100b20;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, border-color 0.2s;
     }
 
-    .btn-outline {
-      background: transparent;
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .button-primary {
+      background: var(--green);
+      border-color: var(--green);
       color: white;
-      border: 1px solid #514765;
     }
 
     section {
-      padding: 65px 8%;
+      padding: 75px 0;
     }
 
-    .subtitle {
-      color: #aaa9c0;
-      margin: 8px 0 28px;
+    .section-heading {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 30px;
+      letter-spacing: -0.8px;
+      margin-bottom: 8px;
+    }
+
+    .section-description {
+      color: var(--muted);
     }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 18px;
     }
 
     .card {
-      background: #151521;
-      border: 1px solid #2b2b40;
-      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 25px;
-      transition: 0.25s;
+      transition: border-color 0.2s, transform 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      border-color: #9b7bff;
+      border-color: #586575;
+      transform: translateY(-3px);
     }
 
-    .emoji {
-      font-size: 35px;
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #1c2b3b;
+      color: var(--accent);
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 19px;
       margin-bottom: 10px;
     }
 
-    .card p, .about p {
-      color: #aaa9c0;
-      margin: 12px 0;
-    }
-
-    .tech {
-      color: #bca8ff;
+    .card p {
+      color: var(--muted);
       font-size: 14px;
-      margin: 15px 0;
+      margin-bottom: 18px;
     }
 
-    .card a {
-      color: #80c5ff;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tags span {
+      color: #b7d9ff;
+      background: #182536;
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    .text-link {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    .about {
-      background: #151521;
-      padding: 25px;
-      border-radius: 15px;
-      border: 1px solid #2b2b40;
+    .about-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .about-box p:last-child {
+      margin-bottom: 0;
     }
 
     .skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 25px;
     }
 
-    .skills span {
-      padding: 10px 15px;
+    .skill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 9px 14px;
       border-radius: 8px;
-      background: #201c31;
-      border: 1px solid #39304f;
+      font-size: 14px;
     }
 
-    .contact {
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 35px 25px;
       text-align: center;
-      background: radial-gradient(ellipse at bottom, #29204c, #0b0b12 70%);
     }
 
-    .contact p {
-      color: #aaa9c0;
-      margin-top: 12px;
+    .contact-box p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 10px auto 0;
     }
 
     footer {
-      text-align: center;
-      padding: 25px;
-      color: #88879e;
-      border-top: 1px solid #252536;
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 18px 5%;
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: 90%;
+      }
+
+      .navbar {
+        min-height: 68px;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      nav {
+        gap: 12px;
       }
 
       nav a {
-        margin-left: 8px;
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .hero {
-        padding: 75px 18px;
+        padding: 80px 0 65px;
+      }
+
+      h1 {
+        letter-spacing: -1.3px;
+      }
+
+      .hero-description {
+        font-size: 15px;
       }
 
       section {
-        padding: 45px 6%;
+        padding: 55px 0;
+      }
+
+      h2 {
+        font-size: 26px;
       }
 
       .projects {
         grid-template-columns: 1fr;
+      }
+
+      .card,
+      .about-box {
+        padding: 22px;
+      }
+
+      .contact-box {
+        padding: 28px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
       }
     }
   </style>
@@ -210,92 +373,162 @@
 
 <body>
   <header>
-    <div class="logo">meu<span>portfólio.</span></div>
+    <div class="container navbar">
+      <a class="logo" href="#inicio">jota<span>dev.</span></a>
 
-    <nav>
-      <a href="#projetos">Projetos</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contato">Contato</a>
-    </nav>
+      <nav aria-label="Navegação principal">
+        <a href="#projetos">Projetos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <span class="tag">👋 Bem-vindo ao meu espaço</span>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <p class="eyebrow">Desenvolvedor em formação</p>
 
-      <h1>Ideias que viram<br><span>projetos digitais.</span></h1>
+        <h1>
+          Olá, eu sou o <span>JotaDev.</span><br>
+          Criando ideias, linha por linha.
+        </h1>
 
-      <p>
-        Estou aprendendo programação e criando projetos
-        para transformar ideias em experiências digitais.
-        Este é o meu espaço para compartilhar minha evolução.
-      </p>
+        <p class="hero-description">
+          Estou aprendendo programação e desenvolvendo projetos
+          para transformar ideias em experiências digitais.
+          Aqui compartilho meu trabalho e minha evolução.
+        </p>
 
-      <a class="btn" href="#projetos">Ver projetos ↗</a>
-      <a class="btn btn-outline" href="#sobre">Conhecer mais</a>
+        <div class="buttons">
+          <a class="button button-primary" href="#projetos">
+            Explorar projetos ↗
+          </a>
+
+          <a class="button" href="#sobre">
+            Sobre mim
+          </a>
+        </div>
+      </div>
     </section>
 
     <section id="projetos">
-      <h2>Meus projetos 🚀</h2>
-      <p class="subtitle">Conheça alguns dos meus trabalhos.</p>
-
-      <div class="projects">
-        <article class="card">
-          <div class="emoji">🌐</div>
-          <h3>Meu portfólio</h3>
-          <p>
-            Um site criado para apresentar meus projetos
-            e aprender desenvolvimento web.
+      <div class="container">
+        <div class="section-heading">
+          <h2>Projetos em destaque</h2>
+          <p class="section-description">
+            Projetos que estou construindo e aprimorando.
           </p>
-          <div class="tech">HTML • CSS • GitHub</div>
-          <a href="#contato">Em desenvolvimento ↗</a>
-        </article>
+        </div>
 
-        <article class="card">
-          <div class="emoji">⚡</div>
-          <h3>Próximo projeto</h3>
-          <p>
-            Novas ideias e experiências estão a caminho.
-            Em breve, mais novidades por aqui.
-          </p>
-          <div class="tech">Novas tecnologias</div>
-          <a href="#sobre">Saiba mais ↗</a>
-        </article>
+        <div class="projects">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">&lt;/&gt;</div>
+
+            <h3>Meu portfólio</h3>
+
+            <p>
+              Meu primeiro site pessoal, criado para apresentar
+              meus projetos e praticar desenvolvimento web.
+            </p>
+
+            <div class="tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>GitHub Pages</span>
+            </div>
+
+            <a class="text-link" href="#inicio">
+              Ver projeto ↗
+            </a>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌘</div>
+
+            <h3>Próximo projeto</h3>
+
+            <p>
+              Um espaço reservado para meu próximo projeto.
+              Em breve, adicionarei uma nova criação por aqui.
+            </p>
+
+            <div class="tags">
+              <span>Em desenvolvimento</span>
+            </div>
+
+            <a class="text-link" href="#contato">
+              Mais novidades em breve
+            </a>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="sobre">
-      <h2>Sobre mim</h2>
-      <p class="subtitle">Aprendendo, criando e evoluindo.</p>
+      <div class="container">
+        <div class="section-heading">
+          <h2>Sobre mim</h2>
+          <p class="section-description">
+            Um pouco sobre minha jornada na programação.
+          </p>
+        </div>
 
-      <div class="about">
-        <p>
-          Sou alguém que gosta de tecnologia, criatividade
-          e de transformar ideias em projetos reais.
-          Estou desenvolvendo minhas habilidades de programação
-          e compartilhando cada etapa dessa jornada.
-        </p>
-      </div>
+        <div class="about-box">
+          <p>
+            Sou o JotaDev e estou desenvolvendo minhas habilidades
+            na área de tecnologia por meio de estudos e projetos
+            práticos.
+          </p>
 
-      <h2 style="margin-top: 30px">Tecnologias</h2>
+          <p>
+            Meu objetivo é aprender continuamente, resolver problemas
+            e construir projetos cada vez melhores.
+          </p>
 
-      <div class="skills">
-        <span>🌐 HTML</span>
-        <span>🎨 CSS</span>
-        <span>⚙️ JavaScript</span>
-        <span>🐙 GitHub</span>
+          <p>
+            Este portfólio é parte dessa jornada e vai crescer
+            junto com minhas habilidades.
+          </p>
+        </div>
+
+        <h3 style="margin-top: 30px">Tecnologias e ferramentas</h3>
+
+        <div class="skills">
+          <span class="skill">HTML5</span>
+          <span class="skill">CSS3</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">GitHub</span>
+          <span class="skill">GitHub Pages</span>
+        </div>
       </div>
     </section>
 
-    <section id="contato" class="contact">
-      <h2>Vamos nos conectar? 🤝</h2>
-      <p>Em breve, você poderá encontrar meus links por aqui.</p>
-      <a class="btn" href="#inicio">Voltar ao topo ↑</a>
+    <section id="contato">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Vamos construir algo?</h2>
+
+          <p>
+            Este é meu espaço na programação. Em breve, adicionarei
+            meus contatos e links para outros projetos.
+          </p>
+
+          <div class="buttons" style="justify-content: center">
+            <a class="button" href="#projetos">
+              Conhecer meus projetos ↗
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> Meu Portfólio • Feito com 💜
+    <div class="container footer-content">
+      <span>© <span id="year"></span> JotaDev</span>
+      <span>Desenvolvido com HTML e CSS.</span>
+    </div>
   </footer>
 
   <script>
